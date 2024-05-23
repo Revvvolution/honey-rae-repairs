@@ -1,0 +1,11 @@
+.user {
+    background-color: var(--white);
+    border: 1px solid var(--outline);
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+
+  .user-info {
+    color: var(--info);
+    font-family: "Roboto", sans-serif;
+  }
