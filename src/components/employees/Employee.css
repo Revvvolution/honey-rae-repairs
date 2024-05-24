@@ -6,7 +6,7 @@
     margin: 3rem;
   }
 
-  .employees > * {
-    flex-basis: 31%;
-    margin: 0.5rem;
-  }
+.employees > * {
+  flex-basis: 31%;
+  margin: 0.5rem;
+}
