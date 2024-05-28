@@ -10,3 +10,31 @@
   flex-basis: 31%;
   margin: 0.5rem;
 }
+
+.employee {
+  background-color: var(--white);
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+section.employee {
+  margin: 3rem;
+}
+
+.employee-info {
+  color: var(--info);
+  font-family: "Roboto", sans-serif;
+}
+
+.employee-footer {
+  margin: 1rem 0 0.25rem 0;
+  font-style: oblique;
+}
+
+.employee-header {
+  font-size: larger;
+  font-weight: 700;
+  line-height: 3rem;
+  color: var(--primary);
+}
