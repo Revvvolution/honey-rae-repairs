@@ -17,6 +17,7 @@
     margin: 0.5rem 0;
     border-radius: 0.5rem;
     padding: 0.5rem;
+    box-shadow: 4px 3px slategray;
   }
 
   /* This targets all the child elements of the element with the .ticket class */
