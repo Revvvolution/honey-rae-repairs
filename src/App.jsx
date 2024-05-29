@@ -1,36 +1,28 @@
 import "./App.css"
-import { CustomerDetails } from "./components/customers/CustomerDetails.jsx"
-import { CustomersList } from "./components/customers/CustomersList.jsx"
-import { EmployeeDetails } from "./components/employees/EmployeeDetails.jsx"
-import { EmployeesList } from "./components/employees/EmployeesList.jsx"
-import { NavBar } from "./components/nav/NavBar.jsx"
-import { TicketList } from "./components/tickets/TicketList.jsx"
-import { Welcome } from "./components/welcome/Welcome.jsx"
-import { Routes, Route, Outlet } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
+import { Login } from "./components/auth/Login.jsx"
+import { Register } from "./components/auth/Register.jsx"
+import { Authorized } from "./views/Authorized.jsx"
+import { ApplicationViews } from "./views/ApplicationViews.jsx"
 
 export const App = () => {
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
       <Route 
-        path="/" 
+        path="*" 
         element={
-          <>
-            <NavBar />
-            <Outlet />
-          </>
-        }
-        >
-        <Route index element={<Welcome />} />
-        <Route path="tickets" element={<TicketList />} />
-        <Route path="employees">
-          <Route index element={<EmployeesList />} />
-          <Route path=":employeeId" element={<EmployeeDetails />} />
-        </Route>
-        <Route path="customers">
-          <Route index element={<CustomersList />} />
-          <Route path=":customerId" element={<CustomerDetails/>} /> {/* /customers/:customerId */}
-        </Route>
-      </Route>
+          // Check if the user is authorized
+          <Authorized>
+            {/* ApplicationViews is the CHILD component of Authorized. Checks to see 
+            if the honey-user object exists in Application tab > Local Storage > localhost in dev tools window) 
+            before allowing child urls to be rendered. */}
+            <ApplicationViews />
+          </Authorized>
+        } 
+      />
     </Routes>
   )
 }
