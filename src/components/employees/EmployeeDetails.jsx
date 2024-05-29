@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 export const EmployeeDetails = () => {
 
     const [employee, setEmployee] = useState({})
-    const [ticket, setEmployeeTicket] = useState(0)
+    const [ticketCount, setEmployeeTicketCount] = useState(0)
 
     const { employeeId } = useParams()
 
@@ -18,6 +18,11 @@ export const EmployeeDetails = () => {
             setEmployee(employeeObj)
         })
     }, [employeeId])
+
+    useEffect(() => {
+        setEmployeeTicketCount(employee.employeeTickets)
+        
+    }, [employee])
 
 
     return (
@@ -35,7 +40,7 @@ export const EmployeeDetails = () => {
                 <span className="employee-info">Rate: </span>
                 {employee.rate}
             </div>
-            <footer className="employee-footer">{`Currently working on ticket(s)`}</footer>
+            <footer className="employee-footer">{`Currently working on ${ticketCount?.length} ticket(s)`}</footer>
         </section>
     )
 }
