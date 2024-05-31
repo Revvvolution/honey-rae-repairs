@@ -6,6 +6,9 @@ export const CustomerNav = () => {
 
     return (
         <ul className="navbar">
+            <li className="navbar-item">
+                <Link className="navbar-link" to="/tickets">Tickets</Link>
+            </li>
             {localStorage.getItem("honey_user") ? (
                 <li className="navbar-item navbar-logout">
                     <Link

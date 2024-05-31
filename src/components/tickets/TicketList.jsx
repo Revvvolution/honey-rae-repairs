@@ -12,13 +12,20 @@ export const TicketList = ({currentUser}) => {
 
     const getAndSetTickets = () => {
       getAllTickets().then(ticketsArray => {
+        if (currentUser.isStaff) {
         setAllTickets(ticketsArray)
+        } else {
+          const customerTickets = ticketsArray.filter(
+            ticket => ticket.userId === currentUser.id
+          )
+          setAllTickets(customerTickets)
+        }
       })
     }
 
     useEffect(() => {
       getAndSetTickets()
-    }, [])  // ONLY runs on initial render of component when array is empty [] and prevents infinite loop
+    }, [currentUser])  // ONLY runs on initial render of component when array is empty [] and prevents infinite loop
   
     useEffect(() => {
       if (showEmergencyOnly) {
