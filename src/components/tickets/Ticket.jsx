@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react"
 import { getAllEmployees } from "../../services/employeeService.jsx"
-import { assignTicket, updateTicket } from "../../services/ticketService.jsx"
+import { assignTicket, deleteTicket, updateTicket } from "../../services/ticketService.jsx"
 
 export const Ticket = ({ ticket, currentUser, getAndSetTickets }) => {
     const [employees, setEmployees] = useState([])
@@ -47,6 +47,12 @@ export const Ticket = ({ ticket, currentUser, getAndSetTickets }) => {
             })
         }
 
+        const handleDelete = () => {
+            deleteTicket(ticket.id).then(() => {
+                getAndSetTickets()
+            })
+        }
+
     return (
         <section className="ticket">
             <header className="ticket-info">#{ticket.id}</header>
@@ -72,6 +78,11 @@ export const Ticket = ({ ticket, currentUser, getAndSetTickets }) => {
                     {/* If the logged in user is the ASSIGNED EMPLOYEE for the ticket and there is no dateCompleted, a
                      button to close the ticket should be displayed */}
                     {assignedEmployee?.userId === currentUser.id && !ticket.dateCompleted ? (<button className="btn btn-warning" onClick={handleClose}>Close</button>
+                    ) : ("")}
+
+                    {/* If the logged in employee is a customer, then they will see a 'delete' button on each of their 
+                    tickets and be able to remove any of them from the database when that button is is clicked */}
+                    {!currentUser.isStaff ? (<button className="btn btn-warning" onClick={handleDelete}>Delete</button>
                     ) : ("")}
                 </div>
             </footer>
